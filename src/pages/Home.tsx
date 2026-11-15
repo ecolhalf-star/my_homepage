@@ -8,6 +8,7 @@ import ChinaWaterMap from '../components/ChinaWaterMap';
 import WaterUseChart from '../components/WaterUseChart';
 import { categories, definition, distribution, hero, sourceTypes } from '../data/content';
 import { cn } from '../lib/cn';
+import { useIsMobile } from '../lib/useIsMobile';
 
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,10 +17,11 @@ function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '16%']);
   const scale = useTransform(scrollYProgress, [0, 1], [1.02, reduce ? 1.02 : 1.13]);
   const fade = useTransform(scrollYProgress, [0, 0.9], [1, 0.2]);
+  const isMobile = useIsMobile();
 
   return (
     <section ref={ref} className="relative flex min-h-[100svh] flex-col overflow-hidden">
-      <motion.div style={{ y, scale }} className="absolute inset-0 -z-0">
+      <motion.div style={isMobile ? undefined : { y, scale }} className="absolute inset-0 -z-0">
         <img
           src="images/hero-water.jpg"
           alt="一滴水落入水面，泛起层层涟漪"
@@ -182,7 +184,7 @@ function SourceSection() {
         <RevealStagger className="mt-14 grid gap-5 md:grid-cols-3">
           {sourceTypes.cards.map((card) => (
             <RevealItem key={card.no}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.045] backdrop-blur-md transition-all duration-700 ease-smooth hover:-translate-y-1 hover:border-aqua/35">
+              <article className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.06] transition-all duration-700 ease-smooth hover:-translate-y-1 hover:border-aqua/35">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={card.image}
@@ -231,7 +233,7 @@ function DistributionSection() {
                 key={block.caption}
                 className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
               >
-                <Reveal className={cn(reversed && 'lg:order-2')}>
+                <Reveal className={cn('min-w-0', reversed && 'lg:order-2')}>
                   <div className="mb-6 flex items-center gap-4">
                     <span className="font-serif text-[2.6rem] font-light leading-none text-ink/15">
                       0{i + 1}
@@ -242,7 +244,7 @@ function DistributionSection() {
                     <Emphasize tone="light" text={block.text} />
                   </p>
                 </Reveal>
-                <Reveal delay={0.12} className={cn(reversed && 'lg:order-1')}>
+                <Reveal delay={0.12} className={cn('min-w-0', reversed && 'lg:order-1')}>
                   {i === 1 ? (
                     <WaterUseChart caption={block.caption} />
                   ) : (
@@ -263,10 +265,11 @@ function ClosingSection() {
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], ['-8%', reduce ? '-8%' : '8%']);
+  const isMobile = useIsMobile();
 
   return (
     <section ref={ref} className="relative flex min-h-[64svh] items-center overflow-hidden py-20 sm:py-24">
-      <motion.div style={{ y }} className="absolute inset-0">
+      <motion.div style={isMobile ? undefined : { y }} className="absolute inset-0">
         <img src="images/hero-water.jpg" alt="" aria-hidden="true" className="h-full w-full object-cover" />
       </motion.div>
       <div className="absolute inset-0 bg-ink/80" />

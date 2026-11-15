@@ -23,6 +23,7 @@ import {
   understand,
 } from '../data/content';
 import { cn } from '../lib/cn';
+import { useIsMobile } from '../lib/useIsMobile';
 
 function PageHero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,10 +31,11 @@ function PageHero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '14%']);
   const scale = useTransform(scrollYProgress, [0, 1], [1.02, reduce ? 1.02 : 1.1]);
+  const isMobile = useIsMobile();
 
   return (
     <section ref={ref} className="relative flex min-h-[80svh] flex-col justify-end overflow-hidden pb-16 pt-36">
-      <motion.div style={{ y, scale }} className="absolute inset-0">
+      <motion.div style={isMobile ? undefined : { y, scale }} className="absolute inset-0">
         <img
           src="images/ocean-top.jpg"
           alt="黄昏海面上的涌浪"
@@ -58,7 +60,7 @@ function PageHero() {
 
           <Link
             to="/echo"
-            className="group mb-2 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/[0.06] px-6 py-3 text-[12px] tracking-[0.08em] text-white backdrop-blur-md transition-all duration-500 ease-smooth hover:border-aqua hover:bg-aqua hover:text-ink"
+            className="group mb-2 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/[0.08] px-6 py-3 text-[12px] tracking-[0.08em] text-white transition-all duration-500 ease-smooth hover:border-aqua hover:bg-aqua hover:text-ink"
           >
             <Headphones className="h-4 w-4" />
             {feeIntro.listen}

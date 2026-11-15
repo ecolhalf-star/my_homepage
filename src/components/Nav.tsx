@@ -54,7 +54,7 @@ export default function Nav() {
       <header
         className={cn(
           'fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-smooth',
-          scrolled || open ? 'border-b border-white/10 bg-ink/80 backdrop-blur-xl' : 'border-b border-transparent',
+          scrolled || open ? 'border-b border-white/10 bg-ink/95' : 'border-b border-transparent',
         )}
       >
         <motion.div

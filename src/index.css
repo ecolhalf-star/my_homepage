@@ -20,11 +20,14 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
   background: var(--ink);
   color: #e8f1f4;
   font-family: 'Noto Sans SC', Inter, 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -96,10 +99,8 @@ body {
   }
 
   .glass {
-    background: linear-gradient(150deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02));
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.03));
     border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
   }
 
   .card-light {
