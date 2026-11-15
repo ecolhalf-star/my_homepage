@@ -73,7 +73,6 @@ export default function PriceChart({ series, unit }: { series: Point[]; unit: st
         </span>
       </div>
       <div className="relative">
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-gradient-to-l from-[#0b1d2c]/70 to-transparent lg:hidden" />
         <div className="-mx-2 overflow-x-auto px-2 pb-2">
           <div className="min-w-[660px]">
             <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="2010 至 2019 年全国水价变化趋势">

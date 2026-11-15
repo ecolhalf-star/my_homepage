@@ -37,7 +37,7 @@ export default function WaterUseChart({ caption }: { caption: string }) {
         </div>
         <div className="space-y-3.5">
           {distribution.ranking.map((item, i) => (
-            <div key={item.name} className="grid grid-cols-[62px_1fr_48px] items-center gap-3 sm:grid-cols-[70px_1fr_52px]">
+            <div key={item.name} className="grid grid-cols-[56px_minmax(0,1fr)_44px] items-center gap-2.5 sm:grid-cols-[70px_minmax(0,1fr)_52px] sm:gap-3">
               <span
                 className={cn(
                   'truncate text-[11.5px] tracking-[0.02em]',

@@ -24,6 +24,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background: var(--ink);
   color: #e8f1f4;
   font-family: 'Noto Sans SC', Inter, 'PingFang SC', 'Microsoft YaHei', sans-serif;

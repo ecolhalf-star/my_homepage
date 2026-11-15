@@ -76,7 +76,7 @@ export default function FeeTable() {
             key={name}
             className="relative overflow-hidden rounded-[20px] border border-ink/10 bg-white/70 p-5 shadow-[0_18px_50px_-45px_rgba(6,19,31,0.4)]"
           >
-            <span className="absolute inset-y-0 left-0 w-[2px] bg-gradient-to-b from-aqua to-transparent" />
+            <span className="absolute left-0 top-6 bottom-6 w-[3px] rounded-r-full bg-gradient-to-b from-aqua/90 via-aqua/45 to-transparent" />
             <div className="flex items-baseline justify-between gap-4 border-b border-ink/10 pb-4">
               <div className="flex items-baseline gap-3">
                 <span className="font-serif text-[10px] tracking-[0.16em] text-ink/25">

@@ -34,7 +34,13 @@ function PageHero() {
   return (
     <section ref={ref} className="relative flex min-h-[80svh] flex-col justify-end overflow-hidden pb-16 pt-36">
       <motion.div style={{ y, scale }} className="absolute inset-0">
-        <img src="images/ocean-top.jpg" alt="黄昏海面上的涌浪" className="h-full w-full object-cover" />
+        <img
+          src="images/ocean-top.jpg"
+          alt="黄昏海面上的涌浪"
+          className="h-full w-full object-cover"
+          fetchPriority="high"
+          decoding="async"
+        />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/25 to-ink" />
       <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_70%_20%,rgba(123,242,226,0.08),transparent_70%)]" />
@@ -157,7 +163,7 @@ function FeeToTaxSection() {
 
         <Reveal delay={0.08} className="mt-16">
           <div className="card-light relative overflow-hidden p-8 sm:p-12">
-            <div className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-aqua to-aqua-deep/40" />
+            <div className="absolute bottom-8 left-0 top-8 w-[3px] rounded-r-full bg-gradient-to-b from-aqua/90 via-aqua/45 to-transparent" />
             <p className="max-w-[52rem] text-[15px] leading-[2.1] text-ink/75 sm:text-[16px]">
               <Emphasize tone="light" text={feeToTax.policy} />
             </p>
@@ -406,7 +412,7 @@ function ChangesSection() {
 
       <div className="container-page relative">
         <Reveal>
-          <p className="mx-auto max-w-[46rem] text-center font-serif text-[clamp(1.8rem,4vw,3rem)] font-light leading-[1.4] text-white text-balance">
+          <p className="max-w-[46rem] font-serif text-[clamp(1.45rem,6.1vw,3rem)] font-light leading-[1.35] text-white">
             {changes.question}
           </p>
         </Reveal>
