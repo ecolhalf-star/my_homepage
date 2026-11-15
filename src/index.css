@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #06131f;
+  --deep: #0a1d2c;
+  --navy: #0e2437;
+  --aqua: #7bf2e2;
+  --mist: #93a9b7;
+  --paper: #f0f5f6;
+  --line-dark: rgba(255, 255, 255, 0.1);
+  --line-light: rgba(6, 19, 31, 0.12);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: #e8f1f4;
+  font-family: 'Noto Sans SC', Inter, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(123, 242, 226, 0.28);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #06131f;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(123, 242, 226, 0.22);
+  border-radius: 99px;
+  border: 3px solid #06131f;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(123, 242, 226, 0.4);
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[11px] font-medium uppercase tracking-widest2 text-aqua/90;
+  }
+
+  .eyebrow-dark {
+    @apply font-sans text-[11px] font-medium uppercase tracking-widest2 text-aqua-deep;
+  }
+
+  .display {
+    @apply font-serif font-light leading-[1.14] tracking-[-0.01em];
+  }
+
+  .h2 {
+    @apply font-serif text-[clamp(1.85rem,3.6vw,3rem)] font-light leading-[1.25] tracking-[-0.01em];
+  }
+
+  .h3 {
+    @apply font-serif text-[clamp(1.2rem,2vw,1.55rem)] font-normal leading-snug;
+  }
+
+  .body-text {
+    @apply text-[15px] leading-[2.05] text-fog/85 sm:text-base;
+  }
+
+  .body-text-dark {
+    @apply text-[15px] leading-[2.05] text-ink/70 sm:text-base;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-white/10;
+  }
+
+  .hairline-dark {
+    @apply h-px w-full bg-ink/10;
+  }
+
+  .glass {
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .card-light {
+    @apply rounded-[22px] border border-ink/[0.07] bg-white/70;
+    box-shadow: 0 24px 70px -40px rgba(6, 19, 31, 0.35);
+  }
+
+  .ring-focus {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-aqua/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+  }
+
+  .link-underline {
+    @apply relative inline-flex items-center gap-2;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* subtle animated currents */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-1.5%, 1.5%, 0) scale(1.03);
+  }
+}
+
+.animate-drift {
+  animation: drift 26s ease-in-out infinite;
+}
+
+@keyframes ripple-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple-pulse 3.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
